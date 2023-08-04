@@ -6,7 +6,7 @@ import EmailService from "./libs/mail.service";
 export class AppService {
   constructor(private Email: EmailService) {}
 
-  userData: singupDTO[] = [{ email: "admin", password: "good" }];
+  userData: singupDTO[] = [{ email: "admin", password: "good", image: "hathat" }];
 
   getHello(): string {
     return "Hello World!";
@@ -17,15 +17,21 @@ export class AppService {
       this.userData.push({ ...data });
       console.log("good", process.env.SENDER_EMAIL);
 
-      const lau = await this.Email.sendMail({
+      await this.Email.sendMail({
         from: process.env.SENDER_EMAIL,
         to: data.email,
         subject: "Register successfully!",
         text: "Harararar",
         html: "Body of the email",
+        attachments: [
+          {
+            filename: "",
+          },
+        ],
       });
 
-      console.log(lau, "ok na sar lar");
+      console.log("ok na sar lar");
+
       return {
         message: "successfully sign up",
         body: data,

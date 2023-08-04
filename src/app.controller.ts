@@ -4,6 +4,7 @@ import { AppService } from "./app.service";
 export interface singupDTO {
   email: string;
   password: string;
+  image: string;
 }
 
 @Controller("signup")
@@ -17,7 +18,7 @@ export class AppController {
 
   @Post()
   singup(@Body() data: singupDTO) {
-    console.log('hay');
+    console.log("hay");
     return this.appService.signup(data);
   }
 }
