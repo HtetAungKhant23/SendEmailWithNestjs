@@ -22,10 +22,12 @@ export class AppService {
         to: data.email,
         subject: "Register successfully!",
         text: "Harararar",
-        html: "Body of the email",
+        html: '<img src="cid:good@example.com"/>',
         attachments: [
           {
-            filename: "",
+            filename: "pwtjekmmsrfcljlfee4v.png",
+            path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
+            cid: "good@example.com",
           },
         ],
       });
