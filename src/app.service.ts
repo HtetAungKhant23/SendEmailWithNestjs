@@ -42,28 +42,34 @@ export class AppService {
 
     try {
       const image = workbook.addImage({
-        buffer: fs.readFileSync("https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png"),
-        extension: "png",
+        buffer: fs.readFileSync(path.join(__dirname, "../uploads/Nezuko.jpeg")),
+        extension: "jpeg",
       });
 
       console.log("starting for loop in adding image");
 
-      for (let index = 0; index < row.length; index++) {
-        const item: any = row[index];
-        worksheet.addImage(image, {
-          tl: { col: 1, row: item.no },
-          ext: { width: 50, height: 50 },
-        });
-        const rowId = worksheet.getRow(item.no + 1);
-        rowId.height = 50;
-      }
+      // for (let index = 0; index < row.length; index++) {
+      //   const item: any = row[index];
+      //   worksheet.addImage(image, {
+      //     tl: { col: 1, row: item.no },
+      //     ext: { width: 50, height: 50 },
+      //   });
+      //   const rowId = worksheet.getRow(item.no + 1);
+      //   rowId.height = 50;
+      // }
+
+      worksheet.addImage(image, {
+        tl: { col: 5, row: 12 },
+        ext: { width: 20, height: 20 },
+      });
+
       console.log("adding image in excel");
     } catch (err) {
       console.log("ma ok buu kwar");
       return new HttpException(
         {
           message: "cannot sing up",
-          devMessage: "cannot-signup",
+          devMessage: err,
         },
         404,
       );
@@ -97,7 +103,7 @@ export class AppService {
           },
           {
             filename: "tawtarngathi.xlsx",
-            path: path.join(__dirname, "../../email-send/uploads/tawtarngathi.xlsx"),
+            path: path.join(__dirname, "../uploads/tawtarngathi.xlsx"),
           },
         ],
       });
