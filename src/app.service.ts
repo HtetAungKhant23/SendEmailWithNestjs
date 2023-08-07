@@ -26,15 +26,15 @@ export class AppService {
 
     worksheet.columns = [
       { header: "No.", key: "no" },
-      { header: "Profile Image", key: "image", width: 30 },
+      { header: "Profile Image", key: "image", width: 25 },
       { header: "Customer Name", key: "name", width: 20 },
       { header: "Phone Number", key: "phone", width: 20 },
     ];
 
     const row = [
-      { no: "12", image: "", name: "Htet Aung Khant", phone: "09123456" },
-      { no: "14", image: "", name: "Htet", phone: "09654321" },
-      { no: "16", image: "", name: "Htet Aung", phone: "09987654" },
+      { no: "1", image: "", name: "Htet Aung Khant", phone: "09123456" },
+      { no: "2", image: "", name: "Htet", phone: "09654321" },
+      { no: "3", image: "", name: "Htet Aung", phone: "09987654" },
     ];
 
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
@@ -60,10 +60,19 @@ export class AppService {
       // }
 
       for (let i = 0; i < row.length; i++) {
+        const item: any = row[i];
+
+        console.log("item = ", item);
+        console.log(item.no);
+
         worksheet.addImage(image, {
           tl: { col: 1, row: i + 1 },
-          ext: { width: 40, height: 20 },
+          ext: { width: 50, height: 30 },
         });
+
+        const rowId = worksheet.getRow(i + 2);
+        rowId.height = 40;
+        // console.log(rowId, "rowId");
       }
 
       // worksheet.addImage(image, {
