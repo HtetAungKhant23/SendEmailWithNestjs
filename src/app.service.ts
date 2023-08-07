@@ -32,9 +32,9 @@ export class AppService {
     ];
 
     const row = [
-      { no: "1", image: "", name: "Htet Aung Khant", phone: "09123456" },
-      { no: "2", image: "", name: "Htet", phone: "09654321" },
-      { no: "3", image: "", name: "Htet Aung", phone: "09987654" },
+      { no: 1, image: "", name: "Htet Aung Khant", phone: "09123456" },
+      { no: 2, image: "", name: "Htet", phone: "09654321" },
+      { no: 3, image: "", name: "Htet Aung", phone: "09987654" },
     ];
 
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
@@ -66,11 +66,11 @@ export class AppService {
         console.log(item.no);
 
         worksheet.addImage(image, {
-          tl: { col: 1, row: i + 1 },
+          tl: { col: 1, row: item.no},
           ext: { width: 50, height: 30 },
         });
 
-        const rowId = worksheet.getRow(i + 2);
+        const rowId = worksheet.getRow(item.no + 1);
         rowId.height = 40;
         // console.log(rowId, "rowId");
       }
