@@ -46,6 +46,8 @@ export class AppService {
         extension: "png",
       });
 
+      console.log("starting for loop in adding image");
+
       for (let index = 0; index < row.length; index++) {
         const item: any = row[index];
         worksheet.addImage(image, {
@@ -55,9 +57,16 @@ export class AppService {
         const rowId = worksheet.getRow(item.no + 1);
         rowId.height = 50;
       }
-
+      console.log("adding image in excel");
     } catch (err) {
-      console.log(err);
+      console.log("ma ok buu kwar");
+      return new HttpException(
+        {
+          message: "cannot sing up",
+          devMessage: "cannot-signup",
+        },
+        404,
+      );
     }
 
     workbook.xlsx
@@ -79,7 +88,7 @@ export class AppService {
         subject: "Sending Email to Taw Tar is successfully!",
         // text: "Harararar",
         // html: '<img src="cid:good@example.com"/>',
-        html: '<h3>Nay Kaung Lr Ngwar</h3><img src="cid:good@example.com"/>',
+        html: '<h3>Nay Kaung Lr Ngwar</h3> <img src="cid:good@example.com"/>',
         attachments: [
           {
             filename: "pwtjekmmsrfcljlfee4v.png",
