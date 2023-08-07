@@ -26,14 +26,15 @@ export class AppService {
 
     worksheet.columns = [
       { header: "No.", key: "no" },
+      { header: "Profile Image", key: "image", width: 30 },
       { header: "Customer Name", key: "name", width: 20 },
       { header: "Phone Number", key: "phone", width: 20 },
     ];
 
     const row = [
-      { no: "12", name: "Htet Aung Khant", phone: "09123456" },
-      { no: "14", name: "Htet", phone: "09654321" },
-      { no: "16", name: "Htet Aung", phone: "09987654" },
+      { no: "12", image: "", name: "Htet Aung Khant", phone: "09123456" },
+      { no: "14", image: "", name: "Htet", phone: "09654321" },
+      { no: "16", image: "", name: "Htet Aung", phone: "09987654" },
     ];
 
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
@@ -58,10 +59,17 @@ export class AppService {
       //   rowId.height = 50;
       // }
 
-      worksheet.addImage(image, {
-        tl: { col: 5, row: 12 },
-        ext: { width: 20, height: 20 },
-      });
+      for (let i = 0; i < row.length; i++) {
+        worksheet.addImage(image, {
+          tl: { col: 1, row: i + 1 },
+          ext: { width: 40, height: 20 },
+        });
+      }
+
+      // worksheet.addImage(image, {
+      //   tl: { col: 1, row: 1 },
+      //   ext: { width: 50, height: 30 },
+      // });
 
       console.log("adding image in excel");
     } catch (err) {
@@ -88,25 +96,25 @@ export class AppService {
       this.userData.push({ ...data });
       console.log("good", process.env.SENDER_EMAIL);
 
-      await this.Email.sendMail({
-        from: process.env.SENDER_EMAIL,
-        to: data.email,
-        subject: "Sending Email to Taw Tar is successfully!",
-        // text: "Harararar",
-        // html: '<img src="cid:good@example.com"/>',
-        html: '<h3>Nay Kaung Lr Ngwar</h3> <img src="cid:good@example.com"/>',
-        attachments: [
-          {
-            filename: "pwtjekmmsrfcljlfee4v.png",
-            path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
-            cid: "good@example.com",
-          },
-          {
-            filename: "tawtarngathi.xlsx",
-            path: path.join(__dirname, "../uploads/tawtarngathi.xlsx"),
-          },
-        ],
-      });
+      // await this.Email.sendMail({
+      //   from: process.env.SENDER_EMAIL,
+      //   to: data.email,
+      //   subject: "Sending Email to Taw Tar is successfully!",
+      //   // text: "Harararar",
+      //   // html: '<img src="cid:good@example.com"/>',
+      //   html: '<h3>Nay Kaung Lr Ngwar</h3> <img src="cid:good@example.com"/>',
+      //   attachments: [
+      //     {
+      //       filename: "pwtjekmmsrfcljlfee4v.png",
+      //       path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
+      //       cid: "good@example.com",
+      //     },
+      //     {
+      //       filename: "tawtarngathi.xlsx",
+      //       path: path.join(__dirname, "../uploads/tawtarngathi.xlsx"),
+      //     },
+      //   ],
+      // });
 
       console.log("ok na sar lar");
 
