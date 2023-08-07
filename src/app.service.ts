@@ -37,6 +37,10 @@ export class AppService {
       { no: 3, image: "", name: "Htet Aung", phone: "09987654" },
     ];
 
+    row.map((rec, key) => {
+      console.log(key, typeof(key), "   => keyyy");
+    });
+
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
 
     worksheet.addRows(row);
@@ -66,7 +70,7 @@ export class AppService {
         console.log(item.no);
 
         worksheet.addImage(image, {
-          tl: { col: 1, row: item.no},
+          tl: { col: 1, row: item.no },
           ext: { width: 50, height: 30 },
         });
 
@@ -105,25 +109,25 @@ export class AppService {
       this.userData.push({ ...data });
       console.log("good", process.env.SENDER_EMAIL);
 
-      // await this.Email.sendMail({
-      //   from: process.env.SENDER_EMAIL,
-      //   to: data.email,
-      //   subject: "Sending Email to Taw Tar is successfully!",
-      //   // text: "Harararar",
-      //   // html: '<img src="cid:good@example.com"/>',
-      //   html: '<h3>Nay Kaung Lr Ngwar</h3> <img src="cid:good@example.com"/>',
-      //   attachments: [
-      //     {
-      //       filename: "pwtjekmmsrfcljlfee4v.png",
-      //       path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
-      //       cid: "good@example.com",
-      //     },
-      //     {
-      //       filename: "tawtarngathi.xlsx",
-      //       path: path.join(__dirname, "../uploads/tawtarngathi.xlsx"),
-      //     },
-      //   ],
-      // });
+      await this.Email.sendMail({
+        from: process.env.SENDER_EMAIL,
+        to: data.email,
+        subject: "Sending Email to Taw Tar is successfully!",
+        // text: "Harararar",
+        // html: '<img src="cid:good@example.com"/>',
+        html: '<h3>Nay Kaung Lr Ngwar</h3>',
+        attachments: [
+          // {
+          //   filename: "pwtjekmmsrfcljlfee4v.png",
+          //   path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
+          //   cid: "good@example.com",
+          // },
+          {
+            filename: "tawtarngathi.xlsx",
+            path: path.join(__dirname, "../uploads/tawtarngathi.xlsx"),
+          },
+        ],
+      });
 
       console.log("ok na sar lar");
 
