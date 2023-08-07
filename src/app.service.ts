@@ -58,13 +58,13 @@ export class AppService {
         subject: "Sending Email to Taw Tar is successfully!",
         // text: "Harararar",
         // html: '<img src="cid:good@example.com"/>',
-        html: "<h3>Nay Kaung Lr Ngwar</h3>",
+        html: '<h3>Nay Kaung Lr Ngwar</h3><img src="cid:good@example.com"/>',
         attachments: [
-          // {
-          //   filename: "pwtjekmmsrfcljlfee4v.png",
-          //   path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
-          //   cid: "good@example.com",
-          // },
+          {
+            filename: "pwtjekmmsrfcljlfee4v.png",
+            path: "https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png",
+            cid: "good@example.com",
+          },
           {
             filename: "tawtarngathi.xlsx",
             path: path.join(__dirname, "../../email-send/uploads/tawtarngathi.xlsx"),
