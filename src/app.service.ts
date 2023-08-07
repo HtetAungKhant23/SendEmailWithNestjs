@@ -3,6 +3,7 @@ import { singupDTO } from "./app.controller";
 import EmailService from "./libs/mail.service";
 import * as Excel from "exceljs";
 import * as path from "path";
+import * as fs from "fs";
 
 @Injectable()
 export class AppService {
@@ -38,6 +39,26 @@ export class AppService {
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
 
     worksheet.addRows(row);
+
+    try {
+      const image = workbook.addImage({
+        buffer: fs.readFileSync("https://res.cloudinary.com/dwrgwvvdk/image/upload/v1685877631/Blog_API/pwtjekmmsrfcljlfee4v.png"),
+        extension: "png",
+      });
+
+      for (let index = 0; index < row.length; index++) {
+        const item: any = row[index];
+        worksheet.addImage(image, {
+          tl: { col: 1, row: item.no },
+          ext: { width: 50, height: 50 },
+        });
+        const rowId = worksheet.getRow(item.no + 1);
+        rowId.height = 50;
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
 
     workbook.xlsx
       .writeFile("uploads/tawtarngathi.xlsx")
