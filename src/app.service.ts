@@ -4,6 +4,7 @@ import EmailService from "./libs/mail.service";
 import * as Excel from "exceljs";
 import * as path from "path";
 import * as fs from "fs";
+import readXlsxFile from "read-excel-file";
 
 @Injectable()
 export class AppService {
@@ -38,7 +39,7 @@ export class AppService {
     ];
 
     row.map((rec, key) => {
-      console.log(key, typeof(key), "   => keyyy");
+      console.log(key, typeof key, "   => keyyy");
     });
 
     // const row = { no: "23", name: "Htet Aung Khant", phone: "09123456" };
@@ -115,7 +116,7 @@ export class AppService {
         subject: "Sending Email to Taw Tar is successfully!",
         // text: "Harararar",
         // html: '<img src="cid:good@example.com"/>',
-        html: '<h3>Nay Kaung Lr Ngwar</h3>',
+        html: "<h3>Nay Kaung Lr Ngwar</h3>",
         attachments: [
           // {
           //   filename: "pwtjekmmsrfcljlfee4v.png",
@@ -144,5 +145,12 @@ export class AppService {
         404,
       );
     }
+  }
+
+  async create(file: Express.Multer.File) {
+    console.log(file);
+    const rows = await readXlsxFile(`${file.originalname}`, { file }).then(({ rows, errors }) => {
+      console.log(rows);
+    });
   }
 }
