@@ -6,6 +6,10 @@ import * as path from "path";
 import * as fs from "fs";
 import readXlsxFile from "read-excel-file";
 
+  type ToBeOrNotToBe = {
+    toBe (val: any) : {};
+    notToBe (val: any) : {};
+};
 @Injectable()
 export class AppService {
   constructor(private Email: EmailService) {}
@@ -149,8 +153,22 @@ export class AppService {
 
   async create(file: Express.Multer.File) {
     console.log(file);
-    const rows = await readXlsxFile(`${file.originalname}`, { file }).then(({ rows, errors }) => {
-      console.log(rows);
-    });
+    // const rows = await readXlsxFile(`${file.originalname}`, { file }).then(({ rows, errors }) => {
+    //   console.log(rows);
+    // });
+    this.expect(3).toBe(3);
+
   }
+
+  expect(val: any): ToBeOrNotToBe {
+    const err = (status: string): boolean => { throw new Error(status) }; 
+    return {
+        toBe(value: any){
+            return val === value || err("Not Equal");
+        },
+        notToBe(value: any){
+            return val !== value || err("Equal");
+        }
+    }
+};
 }
